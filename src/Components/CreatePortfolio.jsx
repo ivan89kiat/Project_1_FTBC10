@@ -9,8 +9,6 @@ class CreatePortfolio extends React.Component {
       title: "",
       unitsAvailable: 0,
       averageCost: 0,
-      currentPrice: 0,
-      performance: 0,
     };
   }
   // The app should display new portfolio by calling addPortfolio function that passed down from the parent.
@@ -21,17 +19,15 @@ class CreatePortfolio extends React.Component {
 
     this.setState({
       id: this.props.portfoliosLength,
-      stockName: "",
+      title: "",
       unitsAvailable: 0,
       averageCost: 0,
-      currentPrice: 0,
-      performance: 0,
     });
   };
   // when there is input, the stockName will be updated according to the value in the input
   handleChangePortfolio = (e) => {
     this.setState({
-      stockName: e.target.value,
+      title: e.target.value,
     });
   };
 
@@ -40,10 +36,10 @@ class CreatePortfolio extends React.Component {
       <div>
         <form onSubmit={this.handleSubmitPortfolio}>
           <h4>Add a portfolio</h4>
-          <h5>Title</h5>
+          <h5>Stock Name:</h5>
           <input
-            name="stockName"
             type="text"
+            name="title"
             value={this.state.title}
             onChange={this.handleChangePortfolio}
           />

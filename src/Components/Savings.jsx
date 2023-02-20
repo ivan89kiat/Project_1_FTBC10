@@ -1,4 +1,5 @@
 import React from "react";
+import BuySell from "./BuySell";
 
 export default class Savings extends React.Component {
   constructor(props) {
@@ -6,19 +7,9 @@ export default class Savings extends React.Component {
 
     this.state = {
       savings: 0,
-      currAvailableBalance: 0,
       savingsEdit: false,
     };
   }
-
-  handleSubmitSavings = (e) => {
-    e.preventDefault();
-    const newBalance = this.state.currAvailableBalance + this.state.savings;
-    this.setState({
-      savings: this.state.savings,
-      currAvailableBalance: newBalance,
-    });
-  };
 
   handleChangeSavings = (e) => {
     const newSavings = parseInt(e.target.value);
@@ -28,21 +19,28 @@ export default class Savings extends React.Component {
     });
   };
 
+  onClickAddSavings = () => {
+    this.props.addSavings(this.state.savings);
+  };
+
+  onClickDeductSavings = () => {
+    this.props.deductSavings(this.state.savings);
+  };
+
   render() {
-    const availableBalance = this.state.currAvailableBalance;
+    // const availableBalance = this.state.currAvailableBalance;
     return (
       <>
-        <form onSubmit={this.handleSubmitSavings}>
-          <input
-            type="number"
-            name="savings"
-            value={this.state.savings}
-            onChange={this.handleChangeSavings}
-          />
-          <input name="submit" type="submit" value="submit" />
-        </form>
+        <input
+          type="text"
+          name="savings"
+          value={this.state.savings}
+          onChange={this.handleChangeSavings}
+        />
+        <button onClick={this.onClickAddSavings}>+</button>
+        <button onClick={this.onClickDeductSavings}>-</button>
+
         <br />
-        <p>Current Available Balance: $ {availableBalance}</p>
       </>
     );
   }
