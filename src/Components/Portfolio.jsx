@@ -1,6 +1,13 @@
 import React from "react";
 import BuySell from "./BuySell";
-
+import {
+  Card,
+  CardActions,
+  CardContent,
+  CardActionArea,
+  Button,
+} from "@mui/material";
+import "../App.css";
 // balance check is necessary for the buy units to ensure the user has enough balance
 let balanceCheck = false;
 class Portfolio extends React.Component {
@@ -69,6 +76,7 @@ class Portfolio extends React.Component {
   };
 
   // this will update the available balance, it will check if the transaction amount is higher or lower than the available balance. if the transaction amount is higher, alert will be prompted.
+
   getNewBalance = (units, price, isBuy) => {
     const transactionAmount = units * price;
     if (transactionAmount > this.props.currAvailableBalance && isBuy) {
@@ -79,12 +87,13 @@ class Portfolio extends React.Component {
     }
 
     // if passed 1st condition, 2nd condition will be checked, if conditions met, balancecheck will be declared true. balance will be updated.
-    if (transactionAmount < this.props.currAvailableBalance && isBuy) {
+    if (isBuy) {
       balanceCheck = true;
       return this.props.currAvailableBalance - transactionAmount;
 
       // last condition is when isBuy is false which is coming from sellUnits, the balance will be updated after units sold.
-    } else return this.props.currAvailableBalance + transactionAmount;
+    }
+    return this.props.currAvailableBalance + transactionAmount;
   };
 
   deductBalanceToBuy = (units, price) => {
@@ -92,6 +101,7 @@ class Portfolio extends React.Component {
     this.setState({
       currAvailableBalance: newBalance,
     });
+    this.props.updateBalanceAfterTransaction(newBalance);
   };
 
   addBalanceAfterSell = (units, price) => {
@@ -99,25 +109,43 @@ class Portfolio extends React.Component {
     this.setState({
       currAvailableBalance: newBalance,
     });
+    this.props.updateBalanceAfterTransaction(newBalance);
   };
 
   render() {
+    console.log(this.props.id);
     return (
-      <div>
-        <h2>Stock Name: {this.props.title}</h2>
-        <h5>Units Available: {this.state.availableUnits} units</h5>
-        <h5>Average Cost: $ {this.state.averageCost}</h5>
-        <h5>Total Investment: $ {this.state.totalInvestment}</h5>
-        {/* <h5>Current Price: $ {this.props.currentPrice}</h5>
-        <h5>Performance: {this.props.performance} %</h5> */}
-        <h5>
-          <BuySell
-            buyUnits={this.buyUnits}
-            sellUnits={this.sellUnits}
-            addBalanceAfterSell={this.addBalanceAfterSell}
-            deductBalanceToBuy={this.deductBalanceToBuy}
-          />
-        </h5>
+      <div className="portfolio">
+        <Card
+          variant="outlined"
+          style={{ backgroundColor: "#FFE15D" }}
+          display="inlined"
+        >
+          <CardContent>
+            <h2>Stock Name: {this.props.title}</h2>
+            <h5>Units Available: {this.state.availableUnits} units</h5>
+            <h5>Average Cost: $ {this.state.averageCost}</h5>
+            <h5>Total Investment: $ {this.state.totalInvestment}</h5>
+          </CardContent>
+          <CardActions>
+            <div className="buySellInput">
+              <BuySell
+                buyUnits={this.buyUnits}
+                sellUnits={this.sellUnits}
+                addBalanceAfterSell={this.addBalanceAfterSell}
+                deductBalanceToBuy={this.deductBalanceToBuy}
+              />
+            </div>
+          </CardActions>
+          <CardActions style={{ backgroundColor: "#F2921D" }}>
+            <Button
+              size="small"
+              onClick={() => this.props.deletePortfolio(this.props.id)}
+            >
+              Delete
+            </Button>
+          </CardActions>
+        </Card>
       </div>
     );
   }

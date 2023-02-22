@@ -5,6 +5,32 @@
 .App-logo {
   height: 40vmin;
   pointer-events: none;
+  float: right;
+}
+
+.title {
+  font-family: "Courier New", Courier, monospace;
+  margin: 5px auto;
+  background-color: #f2cd5c;
+  color: black;
+  padding: 0 100px;
+  font-weight: bolder;
+  border: solid 2px green;
+}
+h5 {
+  font-weight: bolder;
+  text-align: left;
+  margin: 0 auto;
+}
+h1 {
+  font-family: "Brush Script MT", cursive;
+  font-weight: bolder;
+  font-size: 50px;
+  font-variant: small-caps;
+}
+
+input {
+  max-width: 100px;
 }
 
 @media (prefers-reduced-motion: no-preference) {
@@ -14,7 +40,7 @@
 }
 
 .App-header {
-  background-color: #282c34;
+  background-color: #15133c;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
@@ -22,10 +48,59 @@
   justify-content: center;
   font-size: calc(10px + 2vmin);
   color: white;
+  font-family: "Courier New", Courier, monospace;
+}
+.displaySavings {
+  font-family: "Courier New", Courier, monospace;
+  margin: 10px auto;
+  border: thick double green;
+  background: #f2cd5c;
+  color: black;
+  padding: 0 10vh;
 }
 
+.portfolio {
+  color: #282c34;
+  display: flexbox;
+  background-color: bisque;
+  width: 100%;
+}
+
+.button {
+  background-color: #4caf50;
+  border: none;
+  color: white;
+  padding: 5px 16px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  cursor: pointer;
+  font-family: "Courier New", Courier, monospace;
+  font-weight: 800;
+}
+
+.button2 {
+  background-color: red;
+  border: none;
+  color: white;
+  padding: 5px 16px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  cursor: pointer;
+  font-family: "Courier New", Courier, monospace;
+  font-weight: 800;
+}
 .App-link {
   color: #61dafb;
+}
+
+.buySellInput {
+  margin: auto;
 }
 
 @keyframes App-logo-spin {

@@ -1,5 +1,5 @@
 import React from "react";
-import BuySell from "./BuySell";
+import "../App.css";
 
 export default class Savings extends React.Component {
   constructor(props) {
@@ -7,15 +7,13 @@ export default class Savings extends React.Component {
 
     this.state = {
       savings: 0,
-      savingsEdit: false,
     };
   }
 
   handleChangeSavings = (e) => {
-    const newSavings = parseInt(e.target.value);
+    const newSavings = parseInt(e.target.value || 0);
     this.setState({
       savings: newSavings,
-      savingsEdit: true,
     });
   };
 
@@ -30,7 +28,7 @@ export default class Savings extends React.Component {
   render() {
     // const availableBalance = this.state.currAvailableBalance;
     return (
-      <>
+      <div>
         <input
           type="text"
           name="savings"
@@ -41,7 +39,7 @@ export default class Savings extends React.Component {
         <button onClick={this.onClickDeductSavings}>-</button>
 
         <br />
-      </>
+      </div>
     );
   }
 }

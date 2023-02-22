@@ -1,5 +1,6 @@
 import React from "react";
 import Portfolio from "./Portfolio";
+import "../App.css";
 
 export default class BuySell extends React.Component {
   constructor(props) {
@@ -10,53 +11,12 @@ export default class BuySell extends React.Component {
     };
   }
 
-  // // after submit, the state will capture the buyunits
-  // handleSubmitBuy = (e) => {
-  //   e.preventDefault();
-  //   let isBalanceSufficient = false;
-  //   let newUnitsAvailable;
-  //   let newAverageCost;
-  //   let newCurrAvailableBalance;
-  //   // totalCost is to check on whether the available balance is sufficient
-  //   const totalCost = this.state.buyUnits * this.state.buyPrice;
-
-  //   // if its sufficient, we will give the status true to setstate unitsAvailable. Else, we will alert the user.
-  //   if (this.props.currAvailableBalance >= totalCost) {
-  //     isBalanceSufficient = true;
-
-  //     newUnitsAvailable = this.state.buyUnits + this.state.unitsAvailable;
-
-  //     newAverageCost =
-  //       (this.state.unitsAvailable * this.state.averageCost + totalCost) /
-  //       newUnitsAvailable;
-
-  //     newCurrAvailableBalance = this.props.currAvailableBalance - totalCost;
-  //   } else {
-  //     newCurrAvailableBalance = this.props.currAvailableBalance;
-  //     alert("Insufficient Balance");
-  //   }
-
-  //   this.setState({
-  //     unitsAvailable: isBalanceSufficient
-  //       ? newUnitsAvailable
-  //       : this.state.unitsAvailable,
-  //     averageCost: isBalanceSufficient
-  //       ? newAverageCost
-  //       : this.state.averageCost,
-  //     currAvailableBalance: isBalanceSufficient
-  //       ? newCurrAvailableBalance
-  //       : this.props.currAvailableBalance,
-  //     buyUnits: 0,
-  //     buyPrice: 0,
-  //   });
-  // };
-
   // Value in the input will be assigned and updated according to the name
   handleChangeBuySell = (e) => {
     const { name, value } = e.target;
 
     this.setState({
-      [name]: parseFloat(value),
+      [name]: parseFloat(value || 0),
     });
   };
 
@@ -82,6 +42,7 @@ export default class BuySell extends React.Component {
           value={this.state.units}
           onChange={this.handleChangeBuySell}
         />
+        <br />
         <label>Price:</label>
         <input
           type="number"
@@ -89,8 +50,13 @@ export default class BuySell extends React.Component {
           value={this.state.price}
           onChange={this.handleChangeBuySell}
         />
-        <button onClick={this.onClickBuyUnits}>Buy</button>
-        <button onClick={this.onClickSellUnits}>Sell</button>
+        <br />
+        <button className="button" onClick={this.onClickBuyUnits}>
+          Buy
+        </button>
+        <button className="button2" onClick={this.onClickSellUnits}>
+          Sell
+        </button>
       </div>
     );
   }

@@ -16,7 +16,6 @@ class CreatePortfolio extends React.Component {
     e.preventDefault();
     const portfolio = this.state;
     this.props.addPortfolio(portfolio);
-
     this.setState({
       id: this.props.portfoliosLength,
       title: "",
@@ -24,9 +23,11 @@ class CreatePortfolio extends React.Component {
       averageCost: 0,
     });
   };
+
   // when there is input, the stockName will be updated according to the value in the input
   handleChangePortfolio = (e) => {
     this.setState({
+      id: this.props.portfoliosLength,
       title: e.target.value,
     });
   };
@@ -34,16 +35,19 @@ class CreatePortfolio extends React.Component {
   render() {
     return (
       <div>
+        <h4>Add Portfolio</h4>
         <form onSubmit={this.handleSubmitPortfolio}>
-          <h4>Add a portfolio</h4>
-          <h5>Stock Name:</h5>
-          <input
-            type="text"
-            name="title"
-            value={this.state.title}
-            onChange={this.handleChangePortfolio}
-          />
-          <input type="submit" name="submit" value="submit" />
+          <div className="createPortfolio">
+            <h5>Stock Name:</h5>
+            <input
+              key={this.props.portfoliosLength}
+              type="text"
+              name="title"
+              value={this.state.title}
+              onChange={this.handleChangePortfolio}
+            />
+            <input type="submit" name="submit" value="submit" />
+          </div>
         </form>
       </div>
     );
