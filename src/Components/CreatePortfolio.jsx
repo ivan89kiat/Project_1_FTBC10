@@ -1,3 +1,4 @@
+import { lineHeight } from "@mui/system";
 import React from "react";
 
 class CreatePortfolio extends React.Component {
@@ -28,7 +29,7 @@ class CreatePortfolio extends React.Component {
   handleChangePortfolio = (e) => {
     this.setState({
       id: this.props.portfoliosLength,
-      title: e.target.value,
+      title: e.target.value.toUpperCase(),
     });
   };
 
@@ -38,7 +39,7 @@ class CreatePortfolio extends React.Component {
         <h4>Add Portfolio</h4>
         <form onSubmit={this.handleSubmitPortfolio}>
           <div className="createPortfolio">
-            <h5>Stock Name:</h5>
+            <p>Stock Name:</p>
             <input
               key={this.props.portfoliosLength}
               type="text"
@@ -46,9 +47,10 @@ class CreatePortfolio extends React.Component {
               value={this.state.title}
               onChange={this.handleChangePortfolio}
             />
-            <input type="submit" name="submit" value="submit" />
+            <input className="button" type="submit" name="ADD" value="ADD" />
           </div>
         </form>
+        <br />
       </div>
     );
   }

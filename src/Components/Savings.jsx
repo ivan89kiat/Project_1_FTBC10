@@ -17,6 +17,7 @@ export default class Savings extends React.Component {
     });
   };
 
+  // when click event happened, method addSavings & deductSavings will be executed and savings state in this component will pass the data to the parent component
   onClickAddSavings = () => {
     this.props.addSavings(this.state.savings);
   };
@@ -26,7 +27,6 @@ export default class Savings extends React.Component {
   };
 
   render() {
-    // const availableBalance = this.state.currAvailableBalance;
     return (
       <div>
         <input

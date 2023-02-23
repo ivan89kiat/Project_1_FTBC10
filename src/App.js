@@ -16,16 +16,26 @@ class App extends React.Component {
     };
   }
 
+  // Save portfolio to local storage
   handleSavePortfolio = () => {
     localStorage.setItem("My Portfolio", JSON.stringify(this.state.portfolios));
+    localStorage.setItem(
+      "Balance",
+      JSON.stringify(this.state.currAvailableBalance)
+    );
   };
 
+  // Retrieve portfolio from local storage, this button can be modified to happen together when user login
   handleRetrievePortfolio = () => {
     const newPortfolios = JSON.parse(
       localStorage.getItem("My Portfolio", this.state.portfolios)
     );
+    const newBalance = JSON.parse(
+      localStorage.getItem("Balance", this.state.currAvailableBalance)
+    );
     this.setState({
       portfolios: newPortfolios,
+      currAvailableBalance: newBalance,
     });
   };
 
@@ -94,7 +104,7 @@ class App extends React.Component {
           </div>
           <div className="updatePortfolio">
             <button className="button" onClick={this.handleSavePortfolio}>
-              SavePortfolio
+              Save Portfolio
             </button>
             <button className="button" onClick={this.handleRetrievePortfolio}>
               Retrieve Portfolio
@@ -102,6 +112,12 @@ class App extends React.Component {
           </div>
           <div className="portfolio">
             <h1>Portfolio</h1>
+            <div>
+              <CreatePortfolio
+                portfoliosLength={this.state.portfolios.length}
+                addPortfolio={this.addPortfolio}
+              />
+            </div>
             <Card variant="outlined">
               {this.state.portfolios && this.state.portfolios.length > 0 ? (
                 this.state.portfolios.map((portfolio) => (
@@ -113,18 +129,13 @@ class App extends React.Component {
                       this.updateBalanceAfterTransaction
                     }
                     deletePortfolio={this.deletePortfolio}
+                    updatePortfolio={this.updatePortfolio}
                   />
                 ))
               ) : (
                 <p>Create Portfolio</p>
               )}
             </Card>
-          </div>
-          <div>
-            <CreatePortfolio
-              portfoliosLength={this.state.portfolios.length}
-              addPortfolio={this.addPortfolio}
-            />
           </div>
         </header>
       </div>

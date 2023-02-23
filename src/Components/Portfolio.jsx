@@ -1,12 +1,6 @@
 import React from "react";
 import BuySell from "./BuySell";
-import {
-  Card,
-  CardActions,
-  CardContent,
-  CardActionArea,
-  Button,
-} from "@mui/material";
+import { Card, CardActions, CardContent, Button } from "@mui/material";
 import "../App.css";
 // balance check is necessary for the buy units to ensure the user has enough balance
 let balanceCheck = false;
@@ -44,6 +38,7 @@ class Portfolio extends React.Component {
         true
       );
       const totalInvestment = newUnits * newAverageCost;
+
       this.setState({
         availableUnits: newUnits,
         averageCost: newAverageCost,
@@ -68,6 +63,7 @@ class Portfolio extends React.Component {
       newAverageCost === 0 || currTotalCost > prevTotalCost
         ? 0
         : prevTotalCost - currTotalCost;
+
     this.setState({
       availableUnits: newUnits,
       averageCost: newAverageCost,
@@ -113,7 +109,6 @@ class Portfolio extends React.Component {
   };
 
   render() {
-    console.log(this.props.id);
     return (
       <div className="portfolio">
         <Card
@@ -134,6 +129,7 @@ class Portfolio extends React.Component {
                 sellUnits={this.sellUnits}
                 addBalanceAfterSell={this.addBalanceAfterSell}
                 deductBalanceToBuy={this.deductBalanceToBuy}
+                handleSavePortfolioData={this.handleSavePortfolioData}
               />
             </div>
           </CardActions>
@@ -146,6 +142,7 @@ class Portfolio extends React.Component {
             </Button>
           </CardActions>
         </Card>
+        <br />
       </div>
     );
   }

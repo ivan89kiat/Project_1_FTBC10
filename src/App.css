@@ -28,6 +28,11 @@ h1 {
   font-size: 50px;
   font-variant: small-caps;
 }
+h4 {
+  margin: auto 0 0;
+  background-color: #f2cd5c;
+  border: 1px dotted;
+}
 
 input {
   max-width: 100px;
@@ -103,6 +108,17 @@ input {
   margin: auto;
 }
 
+.createPortfolio {
+  display: flex;
+  justify-content: center;
+}
+.createPortfolio p {
+  font-weight: 600;
+  margin: 0 0 auto;
+  justify-content: center;
+  align-items: center;
+  padding: 10px;
+}
 @keyframes App-logo-spin {
   from {
     transform: rotate(0deg);
